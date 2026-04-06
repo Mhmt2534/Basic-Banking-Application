@@ -1,10 +1,12 @@
 package com.turkcell.repository;
 
+import com.turkcell.entity.BankAccount;
+
 public class BankRepository {
 
     //Hesap açma
-    public void addAccount(String name, String surname){
-        System.out.println("Adding account for " + name + " " + surname);
+    public void addAccount(BankAccount account) {
+        System.out.println("Adding account for " + account.getName() + " " + account.getSurname());
     }
 
     //Para yatırma
@@ -18,8 +20,10 @@ public class BankRepository {
     }
 
     //Para transferi
-    public void transferMoney(String fromAccount,String toAccount, double amount) {
-        System.out.println("Transferring " + amount + "TL from account " + fromAccount + " to account " + toAccount);
+    public void transferMoney(BankAccount fromAccount, BankAccount toAccount, double amount) {
+        fromAccount.setBalance(fromAccount.getBalance() - amount);
+        toAccount.setBalance(toAccount.getBalance() + amount);
+        System.out.println("Transferring " + amount + "TL from account " + fromAccount.getAccountNumber() + " to account " + toAccount.getAccountNumber());
     }
 
 
